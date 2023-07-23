@@ -2,9 +2,14 @@
 """
 hypermedia pagination
 """
+#!/usr/bin/env python3
+"""
+simple pagination module
+"""
 import csv
 import math
 from typing import List, Tuple, Dict
+
 
 
 def index_range(page: int, page_size: int) -> Tuple:
@@ -86,6 +91,7 @@ class Server:
 
         if page - 1 > 0:
             prev_page = page - 1
+
 
         return {
             "page_size": size_of_current_page,
