@@ -1,8 +1,5 @@
 #!/usr/bin/python3
 """ basic cache module """
-from typing import Type
-
-
 BaseCaching = __import__('base_caching').BaseCaching
 
 
