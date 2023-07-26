@@ -40,6 +40,8 @@ class LRUCache(BaseCaching):
                 if key not in self.ranked_cache_data:
                     self.ranked_cache_data.insert(0, key)
 
+            self.ranked_cache_data.remove(key)
+            self.ranked_cache_data.insert(0, key)
             self.cache_data[key] = item
 
     def get(self, key):
