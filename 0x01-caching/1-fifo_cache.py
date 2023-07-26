@@ -1,10 +1,15 @@
 #!/usr/bin/python3
 """fifo caching moduke"""
-
 BaseCaching = __import__('base_caching').BaseCaching
 
 
 class FIFOCache(BaseCaching):
+    """
+    FIFO Caching class
+
+    Args:
+        BaseCaching (_type_): _description_
+    """
     def __init__(self):
         """Intializing"""
         super().__init__()
