@@ -32,16 +32,14 @@ class LRUCache(BaseCaching):
             max_size = super().MAX_ITEMS
 
             if data_size == max_size and key not in self.cache_data.keys():
-                disposedEl = self.ranked_cache_data.pop()
+                discardedEl = self.ranked_cache_data.pop()
                 self.ranked_cache_data.insert(0, key)
-                self.cache_data.pop(disposedEl)
-                print(f"DISPOSED: {disposedEl}")
+                self.cache_data.pop(discardedEl)
+                print(f"DISCARD: {discardedEl}")
             else:
                 if key not in self.ranked_cache_data:
                     self.ranked_cache_data.insert(0, key)
 
-            self.ranked_cache_data.remove(key)
-            self.ranked_cache_data.insert(0, key)
             self.cache_data[key] = item
 
     def get(self, key):
