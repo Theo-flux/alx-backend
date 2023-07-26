@@ -30,4 +30,4 @@ There are various caching alogrithm used.
     The frequency at which an item is visited takes predominance.
 
 # Resources:
-- (Caching Replace Policies/Algorithms)[https://en.wikipedia.org/wiki/Cache_replacement_policies#First_In_First_Out_%28FIFO%29]
+- [Caching Replace Policies/Algorithms](https://en.wikipedia.org/wiki/Cache_replacement_policies#First_In_First_Out_%28FIFO%29)
