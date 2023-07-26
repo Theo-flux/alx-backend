@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""fifo caching moduke"""
+"""lifo caching moduke"""
 BaseCaching = __import__('base_caching').BaseCaching
 
 
