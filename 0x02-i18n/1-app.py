@@ -10,6 +10,7 @@ class Config:
     BABEL_DEFAULT_LOCALE = 'fr'
     BABEL_DEFAULT_TIMEZONE = 'UTC'
 
+
 app = Flask(__name__)
 babel = Babel(app)
 
