@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""5-app module"""
+"""6-app module"""
 from flask import Flask, render_template, request, g
 from flask_babel import Babel
 
@@ -37,18 +37,27 @@ def before_request():
     try:
         login_as = int(request.args.get('login_as'))
         g.user = (get_user(login_as))
-    except Exception as err:
+    except Exception:
         return None
 
 
 @babel.localeselector
 def get_locale():
     """to determine the best match with our supported languages."""
+    locales = Config.LANGUAGES
     lang = request.accept_languages.best_match(app.config['LANGUAGES'])
     loc = request.args.get('locale')
 
-    if loc in Config.LANGUAGES:
+    if loc in locales:
         lang = loc
+
+    if g.user:
+        if g.user.get('locale') in locales:
+            lang = g.user.get('locale')
+
+    if request.headers.get('locale'):
+        if request.headers.get('locale') in locales:
+            lang = request.headers.get('locale')
 
     return lang
 
@@ -56,6 +65,6 @@ def get_locale():
 @app.route('/')
 def index():
     """
-    5-app.py default translation
+    6-app.py default translation
     """
-    return render_template('/5-index.html')
+    return render_template('/6-index.html')
