@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""2-app module"""
+"""3-app module"""
 from flask import Flask, render_template, request
-from flask_babel import Babel
+from flask_babel import Babel, _
 
 
 class Config:
@@ -25,6 +25,6 @@ def get_locale():
 @app.route('/')
 def index():
     """
-    2-app.py default translation
+    3-app.py default translation
     """
-    return render_template('/2-index.html')
+    return render_template('/3-index.html', home_title=_('Welcome to Holberton'), home_header=_('Hello world'))
