@@ -2,6 +2,8 @@
 """7-app module"""
 from flask import Flask, render_template, request, g
 from flask_babel import Babel
+from pytz import timezone
+from pytz.exceptions import UnknownTimeZoneError
 
 
 class Config:
@@ -56,11 +58,33 @@ def get_locale():
         if user_locale and user_locale in locales:
             lang = user_locale
 
-    if request.headers.get('locale', None):
-        if request.headers.get('locale', None) in locales:
-            lang = request.headers.get('locale', None)
+    if request.headers.get('locale'):
+        if request.headers.get('locale') in locales:
+            lang = request.headers.get('locale')
 
     return lang
+
+
+@babel.timezoneselector
+def get_timezone():
+    """
+    Select and return appropriate timezone
+    """
+    tzone = request.args.get('timezone')
+    print(tzone)
+    if tzone:
+        try:
+            return timezone(tzone).zone
+        except UnknownTimeZoneError:
+            pass
+    if g.user:
+        try:
+            tzone = g.user.get('timezone')
+            return timezone(tzone).zone
+        except UnknownTimeZoneError:
+            pass
+    default_tz = Config.BABEL_DEFAULT_TIMEZONE
+    return default_tz
 
 
 @app.route('/')
@@ -68,4 +92,4 @@ def index():
     """
     7-app.py default translation
     """
-    return render_template('/6-index.html')
+    return render_template('/7-index.html')
