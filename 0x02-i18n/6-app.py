@@ -52,7 +52,7 @@ def get_locale():
         lang = loc
 
     if g.user:
-        user_locale = g.user.get('locale') 
+        user_locale = g.user.get('locale')
         if user_locale and user_locale in locales:
             lang = user_locale
 
