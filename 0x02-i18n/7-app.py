@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""6-app module"""
+"""7-app module"""
 from flask import Flask, render_template, request, g
 from flask_babel import Babel
 
@@ -66,6 +66,6 @@ def get_locale():
 @app.route('/')
 def index():
     """
-    6-app.py default translation
+    7-app.py default translation
     """
     return render_template('/6-index.html')
