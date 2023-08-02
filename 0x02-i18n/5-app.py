@@ -37,20 +37,33 @@ def before_request():
     try:
         login_as = int(request.args.get('login_as'))
         g.user = (get_user(login_as))
-    except Exception as err:
+    except Exception:
         return None
 
 
 @babel.localeselector
 def get_locale():
     """to determine the best match with our supported languages."""
-    lang = request.accept_languages.best_match(app.config['LANGUAGES'])
+    lang_config = Config.LANGUAGES
+    default_lang = request.accept_languages.best_match(app.config['LANGUAGES'])
+
     loc = request.args.get('locale')
+    user = g.user
+    headers_loc = request.headers.get('locale')
 
-    if loc in Config.LANGUAGES:
-        lang = loc
+    if loc in lang_config:
+        return loc
 
-    return lang
+    if not user:
+        return loc
+
+    if user:
+        return user.get('locale')
+
+    if headers_loc in lang_config:
+        return headers_loc
+
+    return default_lang
 
 
 @app.route('/')
