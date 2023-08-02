@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """3-app module"""
 from flask import Flask, render_template, request
-from flask_babel import Babel, _
+from flask_babel import Babel
 
 
 class Config:
@@ -27,4 +27,4 @@ def index():
     """
     3-app.py default translation
     """
-    return render_template('/3-index.html', home_title=_('Welcome to Holberton'), home_header=_('Hello world'))
+    return render_template('/3-index.html')
