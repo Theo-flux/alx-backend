@@ -20,11 +20,10 @@ app.config.from_object(Config)
 def get_locale():
     """to determine the best match with our supported languages."""
     lang = request.accept_languages.best_match(app.config['LANGUAGES'])
+    loc = request.args.get('locale')
 
-    for k, v in request.args.items():
-        if k == 'locale':
-            if v in Config.LANGUAGES:
-                lang = v
+    if loc in Config.LANGUAGES:
+        lang = loc
 
     return lang
 
