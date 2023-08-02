@@ -52,12 +52,13 @@ def get_locale():
         lang = loc
 
     if g.user:
-        if g.user.get('locale') in locales:
-            lang = g.user.get('locale')
+        user_locale = g.user.get('locale') 
+        if user_locale and user_locale in locales:
+            lang = user_locale
 
-    if request.headers.get('locale'):
-        if request.headers.get('locale') in locales:
-            lang = request.headers.get('locale')
+    if request.headers.get('locale', None):
+        if request.headers.get('locale', None) in locales:
+            lang = request.headers.get('locale', None)
 
     return lang
 
