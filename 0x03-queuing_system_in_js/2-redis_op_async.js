@@ -13,10 +13,10 @@ function setNewSchool(schoolName, value){
     client.set(schoolName, value)
 }
 
-const get = promisify(client.get).bind(client)
+const promisifyClientGet = promisify(client.get).bind(client)
 
 function displaySchoolValue(schoolName){
-    get(schoolName)
+    promisifyClientGet(schoolName)
     .then(res => console.log(res))
     .catch((err) => {
         console.log(err);
