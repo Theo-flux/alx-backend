@@ -59,5 +59,6 @@ for (let i = 0; i < jobs.length; i++) {
     })
 
     job.on('complete', () => console.log('Notification job completed'))
+    job.on('progress', (progress) => console.log(`Notification job ${job.id} ${progress}% completed`))
     job.on('failed', () => console.log('Notification job failed'))
 }
