@@ -1,11 +1,10 @@
-import { createClient } from "redis";
 import kue from 'kue';
 
-const push_notification_code = kue.createQueue()
+export const push_notification_code = kue.createQueue()
 
-const job = push_notification_code.create('job', {
-    phoneNumber: '34567890',
-    message: 'my first kue job',
+const job = push_notification_code.create('push_notification_code', {
+    phoneNumber: '4153518780',
+    message: 'This is the code to verify your account',
 })
 
 job.save((error) => {
